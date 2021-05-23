@@ -1,6 +1,5 @@
 package org.simply.connected.slae.generator;
 
-import org.simply.connected.slae.math.ProfileMatrix;
 import org.simply.connected.slae.math.SquareMatrix;
 import org.simply.connected.slae.math.Vector;
 
