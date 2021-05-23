@@ -27,6 +27,7 @@ public abstract class AbstractSlaeGenerator implements Generator {
                 Vector freeValues = product(matrix, solution);
                 File file = new File(directory, getFileName(arity, matrixInd, generationID));
                 try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(file.toPath()))) {
+                    writer.println(arity);
                     writer.println(matrix);
                     writer.println(freeValues);
                 }

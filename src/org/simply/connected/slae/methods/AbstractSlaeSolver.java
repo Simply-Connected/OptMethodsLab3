@@ -30,7 +30,8 @@ public abstract class AbstractSlaeSolver implements SlaeSolver {
         try (BufferedReader reader = Files.newBufferedReader(input.toPath(), StandardCharsets.UTF_8);
              PrintWriter writer = new PrintWriter(Files.newBufferedWriter(output.toPath(), StandardCharsets.UTF_8));
         ) {
-            SquareMatrix coefficients = readMatrix(reader);
+            int arity = Utils.readInts(reader)[0];
+            SquareMatrix coefficients = readMatrix(reader, arity);
             Vector freeValues = Vector.readFrom(reader);
             Vector result = solve(coefficients, freeValues);
             writer.println(Utils.joinToString(result.getData()));
@@ -38,5 +39,5 @@ public abstract class AbstractSlaeSolver implements SlaeSolver {
         }
     }
 
-    protected abstract SquareMatrix readMatrix(BufferedReader reader) throws IOException;
+    protected abstract SquareMatrix readMatrix(BufferedReader reader, int arity) throws IOException;
 }

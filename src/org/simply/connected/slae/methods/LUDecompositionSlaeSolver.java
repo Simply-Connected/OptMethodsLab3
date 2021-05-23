@@ -47,7 +47,7 @@ public class LUDecompositionSlaeSolver extends AbstractSlaeSolver{
     }
 
     @Override
-    protected SquareMatrix readMatrix(BufferedReader reader) throws IOException {
+    protected SquareMatrix readMatrix(BufferedReader reader, int arity) throws IOException {
         return ProfileMatrix.readFrom(reader);
     }
 
