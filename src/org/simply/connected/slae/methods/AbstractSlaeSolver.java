@@ -21,7 +21,7 @@ public abstract class AbstractSlaeSolver implements SlaeSolver {
             throw new IllegalArgumentException("Input is not an existing file");
         }
         try (BufferedReader reader = Files.newBufferedReader(input.toPath(), StandardCharsets.UTF_8);
-             PrintWriter writer = new PrintWriter(Files.newBufferedWriter(output.toPath(), StandardCharsets.UTF_8));
+             PrintWriter writer = new PrintWriter(Files.newBufferedWriter(output.toPath(), StandardCharsets.UTF_8))
         ) {
             int arity = Utils.readInts(reader)[0];
             SquareMatrix coefficients = readMatrix(reader, arity);
