@@ -1,7 +1,6 @@
 package org.simply.connected.slae.methods;
 
 import org.simply.connected.slae.generator.Utils;
-import org.simply.connected.slae.math.ProfileMatrix;
 import org.simply.connected.slae.math.SquareMatrix;
 import org.simply.connected.slae.math.Vector;
 
@@ -11,12 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public abstract class AbstractSlaeSolver implements SlaeSolver {
 
