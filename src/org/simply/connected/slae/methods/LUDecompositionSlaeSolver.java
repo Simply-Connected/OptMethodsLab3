@@ -8,11 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class LUDecompositionSlaeSolver extends AbstractSlaeSolver{
-    private final double eps;
-
-    public LUDecompositionSlaeSolver(double eps) {
-        this.eps = eps;
-    }
 
     public static void LUDecompose(SquareMatrix matrix) {
         for (int i = 1; i < matrix.getArity(); i++) {
@@ -76,6 +71,5 @@ public class LUDecompositionSlaeSolver extends AbstractSlaeSolver{
         }
         return new Vector(res);
     }
-
 
 }
