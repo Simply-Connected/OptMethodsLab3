@@ -23,7 +23,7 @@ public class Vector {
         return new Vector(data);
     }
 
-    public void set(int i, int val) {
+    public void set(int i, double val) {
         data[i] = val;
     }
 
