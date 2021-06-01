@@ -11,7 +11,7 @@ import java.util.Random;
 import static java.lang.Math.min;
 import static java.lang.Math.round;
 
-public class ProfileMatrixLUDecompositionGenerator extends AbstractSlaeGenerator {
+public class ProfileMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
             List.of(10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000);
 
@@ -19,7 +19,7 @@ public class ProfileMatrixLUDecompositionGenerator extends AbstractSlaeGenerator
     private final double maxProfileSizeRatio;
     private final Random random;
 
-    public ProfileMatrixLUDecompositionGenerator(double maxProfileSizeRatio) {
+    public ProfileMatrixGenerator(double maxProfileSizeRatio) {
         this.maxProfileSizeRatio = maxProfileSizeRatio;
         random = new Random(new Date().getTime());
     }

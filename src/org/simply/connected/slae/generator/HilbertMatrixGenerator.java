@@ -5,7 +5,7 @@ import org.simply.connected.slae.math.SquareMatrix;
 
 import java.util.List;
 
-public class HilbertMatrixLUDecompositionGenerator extends AbstractSlaeGenerator {
+public class HilbertMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
             List.of(10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000);
 
