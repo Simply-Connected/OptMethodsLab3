@@ -20,6 +20,9 @@ public class ProfileMatrixGenerator extends AbstractSlaeGenerator {
     private final Random random;
 
     public ProfileMatrixGenerator(double maxProfileSizeRatio) {
+        if (maxProfileSizeRatio <= 0 || maxProfileSizeRatio > 1) {
+            throw new IllegalStateException("Max profile size should be between 0 and 1");
+        }
         this.maxProfileSizeRatio = maxProfileSizeRatio;
         random = new Random(new Date().getTime());
     }
