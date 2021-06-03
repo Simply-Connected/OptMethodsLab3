@@ -38,7 +38,7 @@ public abstract class AbstractSlaeGenerator implements Generator {
     protected abstract List<SquareMatrix> getMatrices(int arity);
     protected abstract List<Integer> getArities();
 
-    protected static Vector getSolution(int arity) {
+    public static Vector getSolution(int arity) {
         double[] res = new double[arity];
         for (int i = 0; i < arity; i++) {
             res[i] = i + 1;
