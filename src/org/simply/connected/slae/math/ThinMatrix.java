@@ -55,8 +55,8 @@ public class ThinMatrix extends AbstractCompactMatrix {
                 Utils.joinToString(diag),
                 Utils.joinToString(aL),
                 Utils.joinToString(aU),
-                Utils.joinToString(ja),
-                Utils.joinToString(ia)
+                Utils.joinToString(ia),
+                Utils.joinToString(ja)
         );
     }
 
