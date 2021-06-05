@@ -14,6 +14,7 @@ import static java.lang.Math.round;
 public class ThinMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
             List.of(10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000);
+    private static final int MAX_K = 10;
 
     private final double maxPortraitSizeRatio;
     private final Random random;
@@ -61,7 +62,7 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
     protected double[] getDiagonal(int arity, double sum) {
         double[] res = new double[arity];
         for (int i = 0; i < arity; i++) {
-            res[i] = sum;
+            res[i] =  -sum;
         }
         return res;
     }
@@ -92,7 +93,7 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
         double[] aU = getTriangle(arity, portrait);
         double tenPow = 1;
         double sum = Utils.sum(aL) + Utils.sum(aU);
-        for (int k = 0; k <= 10; k++) {
+        for (int k = 0; k <= MAX_K; k++) {
             double[] diag = getDiagonal(arity, sum);
             diag[0] = -sum + tenPow;
             tenPow /= 10;

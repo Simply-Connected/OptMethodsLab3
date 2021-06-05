@@ -14,6 +14,7 @@ import static java.lang.Math.round;
 public class ProfileMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
             List.of(10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000);
+    private static final int MAX_K = 10;
 
 
     private final double maxProfileSizeRatio;
@@ -51,7 +52,7 @@ public class ProfileMatrixGenerator extends AbstractSlaeGenerator {
     private double[] getDiagonal(int arity, double sum) {
         double[] res = new double[arity];
         for (int i = 0; i < arity; i++) {
-            res[i] = sum;
+            res[i] =  -sum;
         }
         return res;
     }
@@ -81,7 +82,7 @@ public class ProfileMatrixGenerator extends AbstractSlaeGenerator {
         double[] aL = getTriangle(arity, profiles);
         double[] aU = getTriangle(arity, profiles);
         double tenPow = 1;
-        for (int k = 0; k <= 10; k++) {
+        for (int k = 0; k <= MAX_K; k++) {
             double sum = Utils.sum(aL) + Utils.sum(aU);
             double[] diag = getDiagonal(arity, sum);
             diag[0] = -sum + tenPow;
