@@ -13,7 +13,7 @@ import static java.lang.Math.round;
 
 public class ThinMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
-            List.of(10, 20, 30, 50, 100, 200, 300, 500, 1000);
+            List.of(10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000);
 
     private final double maxPortraitSizeRatio;
     private final boolean isPositive;
