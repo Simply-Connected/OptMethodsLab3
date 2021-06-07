@@ -38,6 +38,14 @@ public abstract class AbstractSlaeGenerator implements Generator {
     protected abstract List<SquareMatrix> getMatrices(int arity);
     protected abstract List<Integer> getArities();
 
+    protected static double getRowSum(SquareMatrix matrix, int row) {
+        double sum = 0;
+        for (int i = 0; i < matrix.getArity(); i++) {
+            sum += matrix.get(row, i);
+        }
+        return sum;
+    }
+
     public static Vector getSolution(int arity) {
         double[] res = new double[arity];
         for (int i = 0; i < arity; i++) {

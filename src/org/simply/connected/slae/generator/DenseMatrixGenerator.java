@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class DenseMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
-            List.of(10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000);
+            List.of(10, 20, 30, 50, 100, 200, 500, 1000);
     private static final int MAX_K = 10;
 
     private final Random random;
@@ -30,19 +30,17 @@ public class DenseMatrixGenerator extends AbstractSlaeGenerator {
         List<SquareMatrix> res = new ArrayList<>();
         for (int k = 0; k <= MAX_K; k++) {
             double[][] matrix = new double[arity][arity];
-            double sum = 0;
             for (int i = 0; i < arity; i++) {
                 for (int j = 0; j < arity; j++) {
                     if (i == j) {
                         continue;
                     }
                     matrix[i][j] = -random.nextInt(5);
-                    sum += matrix[i][j];
                 }
             }
-            matrix[0][0] = -sum + tenPow;
+            matrix[0][0] = -Utils.sum(matrix[0]) + tenPow;
             for (int i = 1; i < arity; i++) {
-                matrix[i][i] = -sum;
+                matrix[i][i] = -Utils.sum(matrix[i]);
             }
             res.add(new DenseMatrix(matrix));
             tenPow /= 10;

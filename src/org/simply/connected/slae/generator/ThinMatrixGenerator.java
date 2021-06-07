@@ -13,13 +13,15 @@ import static java.lang.Math.round;
 
 public class ThinMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
-            List.of(10, 20, 30, 50, 100, 200, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000);
+            List.of(10, 20, 30/*, 50, 100, 200, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000*/);
     private static final int MAX_K = 10;
 
     private final double maxPortraitSizeRatio;
+    private final boolean isPositive;
     private final Random random;
 
-    public ThinMatrixGenerator(double maxPortraitSizeRatio) {
+    public ThinMatrixGenerator(double maxPortraitSizeRatio, boolean isPositive) {
+        this.isPositive = isPositive;
         if (maxPortraitSizeRatio <= 0 || maxPortraitSizeRatio > 1) {
             throw new IllegalStateException("Max Portrait size should be between 0 and 1");
         }
@@ -59,20 +61,14 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
         return res;
     }
 
-    protected double[] getDiagonal(int arity, double sum) {
-        double[] res = new double[arity];
-        for (int i = 0; i < arity; i++) {
-            res[i] =  -sum;
-        }
-        return res;
-    }
 
     protected double[] getTriangle(int arity, int[] portrait) {
         double[] res = new double[Utils.sum(portrait)];
         int curIndex = 0;
+        int sign = isPositive? 1 : -1;
         for (int i = 0; i < arity; i++) {
             for (int j = 0; j < portrait[i]; j++) {
-                res[curIndex++] = (random.nextInt(4) + 1);
+                res[curIndex++] = sign * (random.nextInt(4) + 1);
             }
         }
         return res;
@@ -92,13 +88,15 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
         double[] aL = getTriangle(arity, portrait);
         double[] aU = getTriangle(arity, portrait);
         double tenPow = 1;
-        double sum = Utils.sum(aL) + Utils.sum(aU);
         for (int k = 0; k <= MAX_K; k++) {
-            double[] diag = getDiagonal(arity, sum);
-            diag[0] = -sum + tenPow;
-            tenPow /= 10;
+            double[] diag = new double[arity];
             ThinMatrix matrix = new ThinMatrix(diag, aL, aU, inf, ja);
+            for (int i = 0; i < arity; i++) {
+                matrix.set(i, i, -getRowSum(matrix, i));
+            }
+            matrix.set(0, 0, matrix.get(0, 0) + tenPow);
             res.add(matrix);
+            tenPow /= 10;
         }
         return res;
     }
