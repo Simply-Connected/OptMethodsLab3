@@ -13,8 +13,7 @@ import static java.lang.Math.round;
 
 public class ThinMatrixGenerator extends AbstractSlaeGenerator {
     private static final List<Integer> arities =
-            List.of(10, 20, 30/*, 50, 100, 200, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000*/);
-    private static final int MAX_K = 10;
+            List.of(10, 20, 30, 50, 100, 200, 300, 500, 1000);
 
     private final double maxPortraitSizeRatio;
     private final boolean isPositive;
@@ -56,7 +55,7 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
         int maxPortrait = (int) round(arity * maxPortraitSizeRatio);
 
         for (int i = 0; i < arity; i++) {
-            res[i] = random.nextInt(min(i, maxPortrait) + 1);
+            res[i] = 1 + random.nextInt(min(i, maxPortrait) + 1);
         }
         return res;
     }
@@ -76,7 +75,7 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
 
     @Override
     protected String getFileName(int arity, int matrixInd, String generationID) {
-        return String.format("%s_%d_%d", generationID, arity, matrixInd);
+        return String.format("%s_%d", generationID, arity, matrixInd);
     }
 
     @Override
@@ -86,18 +85,13 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
         int[] inf = getInf(arity, portrait);
         int[] ja = getJA(arity, portrait);
         double[] aL = getTriangle(arity, portrait);
-        double[] aU = getTriangle(arity, portrait);
-        double tenPow = 1;
-        for (int k = 0; k <= MAX_K; k++) {
-            double[] diag = new double[arity];
-            ThinMatrix matrix = new ThinMatrix(diag, aL, aU, inf, ja);
-            for (int i = 0; i < arity; i++) {
-                matrix.set(i, i, -getRowSum(matrix, i));
-            }
-            matrix.set(0, 0, matrix.get(0, 0) + tenPow);
-            res.add(matrix);
-            tenPow /= 10;
+        double[] diag = new double[arity];
+        ThinMatrix matrix = new ThinMatrix(diag, aL, aL, inf, ja);
+        for (int i = 0; i < arity; i++) {
+            matrix.set(i, i, -getRowSum(matrix, i));
         }
+        matrix.set(0, 0, matrix.get(0, 0) + 1);
+        res.add(matrix);
         return res;
     }
 
