@@ -34,7 +34,7 @@ public class ConjugateGradientSlaeSolver extends AbstractSlaeSolver {
 
     @Override
     protected SquareMatrix readMatrix(BufferedReader reader, int arity) throws IOException {
-        return ThinMatrix.readFrom(reader);
+        return ThinMatrix.readFrom(reader, arity);
     }
 
     public int getIterations() {

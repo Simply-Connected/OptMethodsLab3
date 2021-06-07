@@ -43,7 +43,7 @@ public class LUDecompositionSlaeSolver extends AbstractSlaeSolver{
 
     @Override
     protected SquareMatrix readMatrix(BufferedReader reader, int arity) throws IOException {
-        return ProfileMatrix.readFrom(reader);
+        return ProfileMatrix.readFrom(reader, arity);
     }
 
     private Vector solveForLowerTriangular(SquareMatrix triangularMatrix, Vector freeValues) { //TODO Extract

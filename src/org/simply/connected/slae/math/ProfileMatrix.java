@@ -53,7 +53,7 @@ public class ProfileMatrix extends AbstractCompactMatrix {
         );
     }
 
-    public static ProfileMatrix readFrom(BufferedReader reader) throws IOException {
+    public static ProfileMatrix readFrom(BufferedReader reader, int arity) throws IOException {
         return new ProfileMatrix(
                 Utils.readDoubles(reader),
                 Utils.readDoubles(reader),

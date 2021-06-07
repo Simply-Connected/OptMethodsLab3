@@ -60,7 +60,7 @@ public class ThinMatrix extends AbstractCompactMatrix {
         );
     }
 
-    public static ThinMatrix readFrom(BufferedReader reader) throws IOException {
+    public static ThinMatrix readFrom(BufferedReader reader, int arity) throws IOException {
         return new ThinMatrix(
                 Utils.readDoubles(reader),
                 Utils.readDoubles(reader),
