@@ -75,7 +75,7 @@ public class ThinMatrixGenerator extends AbstractSlaeGenerator {
 
     @Override
     protected String getFileName(int arity, int matrixInd, String generationID) {
-        return String.format("%s_%d", generationID, arity, matrixInd);
+        return String.format("%s_%d", generationID, arity);
     }
 
     @Override
