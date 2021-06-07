@@ -19,7 +19,7 @@ public class HilbertDenseMatrixGenerator extends AbstractSlaeGenerator {
         double[][] res = new double[arity][arity];
         for (int i = 0; i < arity; i++) {
             for (int j = 0; j < arity; j++) {
-                res[i][j] = i + j + 1;
+                res[i][j] = 1d / (i + j + 1);
             }
         }
         return List.of(new DenseMatrix(res));
